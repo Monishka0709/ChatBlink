@@ -1,0 +1,72 @@
+.Img{
+    
+    animation: breathe 2s linear infinite;
+}
+
+@keyframes breathe{
+    0%{
+        width:15rem;
+        height: 15rem;
+        
+    }
+
+    50%{
+        width: 16rem;
+        height: 16rem;
+    }
+
+    100%{
+        width:15rem;
+        height: 15rem;
+
+    }
+}
+
+@media screen and (max-width:600px) {
+
+    @keyframes breathe{
+        0%{
+            width:8rem;
+            height: 8rem;
+            
+        }
+    
+        50%{
+            width: 9rem;
+            height: 9rem;
+        }
+    
+        100%{
+            width:8rem;
+            height: 8rem;
+    
+        }
+    }
+    
+    
+}
+
+
+@media screen and (min-width:601px) and (max-width:800px) {
+
+    @keyframes breathe{
+        0%{
+            width:12rem;
+            height: 12rem;
+            
+        }
+    
+        50%{
+            width: 13rem;
+            height: 13rem;
+        }
+    
+        100%{
+            width:12rem;
+            height: 12rem;
+    
+        }
+    }
+    
+    
+}
