@@ -12,9 +12,7 @@ const AppLayout = () => (WrappedComponent) => {
   return (props) => {
 
     
-    // const navigate = useNavigate();
-    // const dispatch = useDispatch();
-    // const socket = getSocket();
+    
 
     const params = useParams();
     const chatId = params.chatId;
@@ -23,9 +21,7 @@ const AppLayout = () => (WrappedComponent) => {
 
 
     const handleDeleteChat = (e, _id, groupChat) => {
-    // dispatch(setIsDeleteMenu(true));
-    // dispatch(setSelectedDeleteChat({ chatId, groupChat }));
-    // deleteMenuAnchor.current = e.currentTarget;
+    
       e.preventDefault();
       console.log("Delete Chat", _id, groupChat);
     };
@@ -34,7 +30,7 @@ const AppLayout = () => (WrappedComponent) => {
 
     return (
     <>
-      {/* <Title title={'ChatBlink'} description={"this is a chat application"}/> */}
+     
       <Header />
 
       <Grid container height={"calc(100vh - 3.8rem)"} sx={{ borderTop: " 10px solid #444141", backgroundColor:"#444141" }} >
