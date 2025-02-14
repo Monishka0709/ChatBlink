@@ -12,33 +12,17 @@ import {
 import React, { memo } from "react";
 import { green,red, grayColorDark } from "../../constants/color";
 import { sampleNotifications } from "../../constants/sampleData";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useAsyncMutation, useErrors } from "../../hooks/hook";
-// import {
-//   useAcceptFriendRequestMutation,
-//   useGetNotificationsQuery,
-// } from "../../redux/api/api";
-// import { setIsNotification } from "../../redux/reducers/misc";
+
 
 const NotificationDialog = () => {
-  // const { isNotification } = useSelector((state) => state.misc);
 
-  // const dispatch = useDispatch();
-
-  // const { isLoading, data, error, isError } = useGetNotificationsQuery();
-
-  // const [acceptRequest] = useAsyncMutation(useAcceptFriendRequestMutation);
 
   const friendRequestHandler =  ({ _id, accept }) => {
-    // dispatch(setIsNotification(false));
-    // await acceptRequest("Accepting...", { requestId: _id, accept });
+   
     console.log(_id)
   };
 
-  // const closeHandler = () => dispatch(setIsNotification(false));
-
-  // useErrors([{ error, isError }]);
-
+  
   return (
     <Dialog open >
       <Stack p={{ xs: "1rem", sm: "2rem" }} maxWidth={"25rem"} >
@@ -74,8 +58,7 @@ const NotificationItem = memo(({ sender, _id, handler }) => {
         alignItems={"center"}
         spacing={"1rem"}
         width={"100%"}
-        // display={'flex'}
-        // justifyContent={'space-between'}
+        
       >
         {/* <Avatar /> */}
 
