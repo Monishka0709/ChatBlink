@@ -2,7 +2,7 @@ import { Add as AddIcon, Done as RemoveIcon } from "@mui/icons-material";
 import { Avatar, IconButton, ListItem, Stack, Typography } from "@mui/material";
 import React, { memo } from "react";
 import { green, red, greenDark, greenLight, redDark } from "../../constants/color";
-// import { transformImage } from "../../lib/features";
+import { transformImage } from "../../lib/features";
 
 const UserItem = ({
   user,
@@ -23,7 +23,7 @@ const UserItem = ({
         width={"100%"}
         {...styling}
       >
-        {/* <Avatar src={transformImage(avatar)} /> */}
+        <Avatar src={transformImage(avatar)} />
 
         <Typography
           variant="body1"
@@ -59,7 +59,7 @@ const UserItem = ({
         </IconButton>
         
       </Stack>
-      {/* <hr width={'200%'}/> */}
+      
     </ListItem>
   );
 };
