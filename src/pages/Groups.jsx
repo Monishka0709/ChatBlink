@@ -54,28 +54,7 @@ const Groups = () => {
   const isAddMember = false;
   console.log(chatId)
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-
-  // const { isAddMember } = useSelector((state) => state.misc);
-
-  // const myGroups = useMyGroupsQuery("");
-
-  // const groupDetails = useChatDetailsQuery(
-  //   { chatId, populate: true },
-  //   { skip: !chatId }
-  // );
-
-  // const [updateGroup, isLoadingGroupName] = useAsyncMutation(
-  //   useRenameGroupMutation
-  // );
-
-  // const [removeMember, isLoadingRemoveMember] = useAsyncMutation(
-  //   useRemoveGroupMemberMutation
-  // );
-
-  // const [deleteGroup, isLoadingDeleteGroup] = useAsyncMutation(
-  //   useDeleteChatMutation
-  // );
+  
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -84,8 +63,7 @@ const Groups = () => {
   const [groupName, setGroupName] = useState("");
   const [groupNameUpdatedValue, setGroupNameUpdatedValue] = useState("");
 
-  // const [members, setMembers] = useState([]);
-
+  
   const openConfirmDeleteHandle = () => {
     setConfirmDeleteDialog(true)
     console.log("Delelte Group")
@@ -152,45 +130,7 @@ const Groups = () => {
 
   const IconBtns = (
     <>
-      {/* <Box
-        sx={{
-          display: {
-            xs: "block",
-            sm: "none",
-            position: "fixed",
-            right: "1rem",
-            top: "1rem",
-          },
-        }}
-      >
-        <IconButton
-         onClick={handleMobile}
-         >
-          <MenuIcon />
-        </IconButton>
-      </Box>
-      <div w={'100%'}>
-
-      <Tooltip title="back">
-        <IconButton
-          sx={{
-            position: "absolute",
-            top: "1.8rem",
-            left: "2rem",
-            bgcolor: greenDark,
-            color: "white",
-            ":hover": {
-              bgcolor: "rgba(0,0,0,0.7)",
-            },
-          }}
-          onClick={navigateBack}
-        >
-          <KeyboardBackspaceIcon />
-        </IconButton>
-      </Tooltip>
-      </div> */}
-
-
+      
       <Box sx= {{flexGrow:1, zIndex:5, borderBottom:'2px solid #444141', height:{ md:'3.8rem'}}}  >
         <AppBar position="static" sx={{
           bgcolor:green,
@@ -273,7 +213,7 @@ const Groups = () => {
            display: {
              xs: "none",
              sm: "block",
-            //  md:'3'
+            
            },
            paddingLeft:'0.5rem',
            background:'#444141',
@@ -302,16 +242,7 @@ const Groups = () => {
               
          }}
       >
-        {/* <Container  
-         sx={{
-           display: "flex",
-           flexDirection: "row",
-           alignItems: "left",
-          //  justifyContent:'center',
-           border:'2px solid black',
-           width:'100%'
-        }}>
-        */}
+      
         { 
           groupName && <>{GroupName}
           <Typography fontSize={'1.2rem'} fontFamily={"Readex Pro"} margin={"1.5rem 0 "} alignSelf={"flex-start"} variant="body1">Members</Typography> 
@@ -343,7 +274,7 @@ const Groups = () => {
             {ButtonGroup}
           </>
         }
-        {/* </Container> */}
+        
   </Grid>
 
 {isAddMember && <Suspense fallback={<Backdrop open/>}><AddMemberDialog/></Suspense>}
