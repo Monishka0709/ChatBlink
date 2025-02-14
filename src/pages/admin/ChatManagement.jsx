@@ -1,91 +1,110 @@
-import React, { useState } from 'react'
-import toast from "react-hot-toast";
-import { green } from '@mui/material/colors';
-import { Avatar, Button, Container, IconButton, Paper, Stack, TextField, Typography } from '@mui/material'
-import { CameraAlt as CameraAltIcon} from "@mui/icons-material"
-import { VisuallyHiddenInput } from '../../components/styles/StyledComponents';
-import { useFileHandler, useInputValidation, useStrongPassword } from '6pp'
-import { usernameValidator } from '../../utils/validation';
-import Background from '../../assets/login_background.png';
-import { Navigate } from 'react-router-dom';
+import { useFetchData } from "6pp";
+import { Avatar, Skeleton, Stack } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import AdminLayout from "../../components/layout/AdminLayout";
+import AvatarCard from "../../components/shared/AvatarCard";
+import Table from "../../components/shared/Table";
+import { server } from "../../constants/config";
 
+import { transformImage } from "../../lib/features";
 
-const isAdmin = true;
+const columns = [
+  {
+    field: "id",
+    headerName: "ID",
+    headerClassName: "table-header",
+    width: 200,
+  },
+  {
+    field: "avatar",
+    headerName: "Avatar",
+    headerClassName: "table-header",
+    width: 150,
+    renderCell: (params) => <AvatarCard avatar={params.row.avatar} />,
+  },
 
-const AdminLogin = () => {
+  {
+    field: "name",
+    headerName: "Name",
+    headerClassName: "table-header",
+    width: 300,
+  },
 
-    const secretKey = useStrongPassword("");
+  {
+    field: "groupChat",
+    headerName: "Group",
+    headerClassName: "table-header",
+    width: 100,
+  },
+  {
+    field: "totalMembers",
+    headerName: "Total Members",
+    headerClassName: "table-header",
+    width: 120,
+  },
+  {
+    field: "members",
+    headerName: "Members",
+    headerClassName: "table-header",
+    width: 400,
+    renderCell: (params) => (
+      <AvatarCard max={100} avatar={params.row.members} />
+    ),
+  },
+  {
+    field: "totalMessages",
+    headerName: "Total Messages",
+    headerClassName: "table-header",
+    width: 120,
+  },
+  {
+    field: "creator",
+    headerName: "Created By",
+    headerClassName: "table-header",
+    width: 250,
+    renderCell: (params) => (
+      <Stack direction="row" alignItems="center" spacing={"1rem"}>
+        <Avatar alt={params.row.creator.name} src={params.row.creator.avatar} />
+        <span>{params.row.creator.name}</span>
+      </Stack>
+    ),
+  },
+];
 
-    const submitHandler = (e) =>{
-        e.preventDefault();
-        console.log("Submit");
+const ChatManagement = () => {
+  const { loading, data, error } = useFetchData(
+    `${server}/api/v1/admin/chats`,
+    "dashboard-chats"
+  );
+
+  
+
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setRows(
+        data.chats.map((i) => ({
+          ...i,
+          id: i._id,
+          avatar: i.avatar.map((i) => transformImage(i, 50)),
+          members: i.members.map((i) => transformImage(i.avatar, 50)),
+          creator: {
+            name: i.creator.name,
+            avatar: transformImage(i.creator.avatar, 50),
+          },
+        }))
+      );
     }
+  }, [data]);
 
-    if(isAdmin) return <Navigate to="/admin/dashboard"/>
   return (
-    <div style={{
-        backgroundImage:`url(${Background})`,
-                
+    <AdminLayout>
+      
+        <Table heading={"All Chats"} columns={columns} rows={rows} />
+     
+    </AdminLayout>
+  );
+};
 
-    }}>
-    <Container component={"main"} maxWidth='xs' sx={{
-        height:'100vh',
-        display: "flex",
-        justifyContent: "center",
-        alignItems:"center",
-
-
-    }}>
-        <Paper elevation={3} 
-        sx={{
-            padding: 4,
-            display: "flex",
-            flexDirection: "column",
-            borderRadius:"10px",
-            alignItems:"center",
-
-        }}>
-
-            {
-                 <>
-                <Typography sx={{color:'#287c8b',
-                    fontFamily: "Readex Pro",
-                    fontWeight: 500,
-                    fontSize: '2rem'
-                }}
-                > Admin Login</Typography>
-                <form style={{
-                    width: '100%',
-                    marginTop:'1rem',
-                }
-                }
-                onSubmit={submitHandler}
-                >
-
-                
-                    {/* <TextField required fullWidth label="Username" margin="normal" variant='outlined' value={username.value} onChange={username.changeHandler}></TextField> */}
-                    <TextField 
-                            required 
-                            fullWidth 
-                            label="Secret Key" 
-                            type='password' 
-                            margin="normal" 
-                            variant='outlined' 
-                            value={secretKey.value} 
-                            onChange={secretKey.changeHandler} 
-                            />
-                    { <Button  fullWidth sx={{marginTop: '1rem', backgroundColor:'#287c8b',border:'1px solid #287c8b', }} variant='contained' color='primary' type='submit'>Login</Button> }
-                    
-                </form>
-                </> 
-                            }
-
-        </Paper>
-
-    </Container>
-    </div>
-    
-  )
-}
-
-export default AdminLogin
+export default ChatManagement;
