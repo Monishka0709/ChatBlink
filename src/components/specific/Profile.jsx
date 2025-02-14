@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, Stack, Typography } from "@mui/material";
+import ProfilePic from '../../assets/react.svg';
 import {
   Face as FaceIcon,
   AlternateEmail as UserNameIcon,
@@ -13,7 +14,7 @@ const Profile = ({  }) => {
   return (
     <Stack spacing={"1.5rem"} direction={"column"} alignItems={"center"} sx={{margin:'0 1rem 1rem 1rem',paddingTop:'1rem',border:'2px solid #2d383b',background:'#282c2d',height:'96%', borderRadius:'10px'}}>
       <Avatar
-        // src={transformImage(user?.avatar?.url)}
+        src={ProfilePic}
         sx={{
           width: 200,
           height: 200,
