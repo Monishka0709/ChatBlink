@@ -12,35 +12,15 @@ import React, { useState } from "react";
 import { grayColor, grayColorDark, green, red } from "../../constants/color";
 import { sampleUsers } from "../../constants/sampleData";
 import UserItem from "../shared/UserItem";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   useAvailableFriendsQuery,
-//   useNewGroupMutation,
-// } from "../../redux/api/api";
-// import { useAsyncMutation, useErrors } from "../../hooks/hook";
-// import { setIsNewGroup } from "../../redux/reducers/misc";
 import toast from "react-hot-toast";
 
 const NewGroupDialog = () => {
-  // const { isNewGroup } = useSelector((state) => state.misc);
-  // const dispatch = useDispatch();
-
-  // const { isError, isLoading, error, data } = useAvailableFriendsQuery();
-  // const [newGroup, isLoadingNewGroup] = useAsyncMutation(useNewGroupMutation);
-
+  
   const groupName = useInputValidation("");
 
   const [selectedMembers, setSelectedMembers] = useState([]);
 
-  // const errors = [
-  //   {
-  //     isError,
-  //     error,
-  //   },
-  // ];
-
-  // useErrors(errors);
-
+  
   const selectMemberHandler = (id) => {
     setSelectedMembers((prev) =>
       prev.includes(id)
@@ -50,24 +30,7 @@ const NewGroupDialog = () => {
  
   };
 
-  // const submitHandler = () => {
-  //   if (!groupName.value) return toast.error("Group name is required");
-
-  //   if (selectedMembers.length < 2)
-  //     return toast.error("Please Select Atleast 3 Members");
-
-  //   newGroup("Creating New Group...", {
-  //     name: groupName.value,
-  //     members: selectedMembers,
-  //   });
-
-  //   closeHandler();
-  // };
-
-  // const closeHandler = () => {
-  //   dispatch(setIsNewGroup(false));
-  // };
-
+  
   return (
     <Dialog open >
       <Stack p={{ xs: "1rem", sm: "3rem" }} width={"25rem"} spacing={"1.5rem"}>
@@ -86,9 +49,6 @@ const NewGroupDialog = () => {
 
         <Stack sx={{backgroundColor:grayColorDark, borderRadius:'10px'}}>
           {
-          // isLoading ? (
-          //   <Skeleton />
-          // ) : (
             sampleUsers?.map((i) => (
               <UserItem
                 user={i}
@@ -98,7 +58,7 @@ const NewGroupDialog = () => {
               />
             )
           )
-          // )
+          
           }
         </Stack>
 
@@ -118,7 +78,7 @@ const NewGroupDialog = () => {
                 color:'white'
               }
             }}
-            // onClick={closeHandler}
+            
           >
             Cancel
           </Button>
@@ -131,8 +91,7 @@ const NewGroupDialog = () => {
                       }}
             variant="contained"
             size="large"
-            // onClick={submitHandler}
-            // disabled={isLoadingNewGroup}
+            
           >
             Create
           </Button>
